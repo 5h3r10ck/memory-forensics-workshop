@@ -5,7 +5,7 @@ First things first, whats memory forensics?
 To keep it short and sweet, Memory forensics is forensic analysis of a computer's **memory dump**.
 In our workshop we used a framework called **Volatility**. It is an open source memory forensics framework for incident response and malware analysis.
 
-You can find the memory dump we work with in this [link](https://mega.nz/#!sh8wmCIL!b4tpech4wzc3QQ6YgQ2uZnOmctRZ2duQxDqxbkWYipQ "link")
+You can find the memory dump we work with in this [link](https://mega.nz/#!sh8wmCIL!b4tpech4wzc3QQ6YgQ2uZnOmctRZ2duQxDqxbkWYipQ "link").
 
 
 - Detecting the OS version
