@@ -1,5 +1,3 @@
-# Welcome to StackEdit!
-
 Hi! Here is a quick recap on what we did last sunday in the memory forensics workshop.
 You can find the memory dump we worked with in the link.
 
@@ -7,7 +5,7 @@ First things first, whats memory forensics?
 To keep it short and sweet, Memory forensics is forensic analysis of a computer's **memory dump**.
 In our workshop we used a framework called **Volatility**. It is an open source memory forensics framework for incident response and malware analysis.
 
-You can find the memory dump we work with in this link.https://mega.nz/#!sh8wmCIL!b4tpech4wzc3QQ6YgQ2uZnOmctRZ2duQxDqxbkWYipQ
+You can find the memory dump we work with in this [link](https://mega.nz/#!sh8wmCIL!b4tpech4wzc3QQ6YgQ2uZnOmctRZ2duQxDqxbkWYipQ "link")
 
 
 - Detecting the OS version
