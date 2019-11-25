@@ -9,12 +9,12 @@ You can find the memory dump we work with in this [link](https://mega.nz/#!sh8wm
 After getting that out of the way, lets get started:
 
 - Detecting the OS:
-	```` shell 
+	```` bash
 	volatility -f OtterCTF.vmem imageinfo 
 	````
 
 - Listing all the running process:
-	````shell 
+	```` bash
 	volatility -f OtterCTF.vmem --profile=Win7SP1x64 pstree
 	````
 
