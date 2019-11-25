@@ -1,17 +1,22 @@
 ### Hi! Here is a quick recap on what we did last sunday in the memory forensics workshop.
 
-First things first, whats memory forensics? 
+First things first, what's memory forensics? 
 To keep it short and sweet, Memory forensics is forensic analysis of a computer's **memory dump**.
 In our workshop we used a framework called **Volatility**. It is an open source memory forensics framework for incident response and malware analysis.
 
 You can find the memory dump we work with in this [link](https://mega.nz/#!sh8wmCIL!b4tpech4wzc3QQ6YgQ2uZnOmctRZ2duQxDqxbkWYipQ "link").
 
+After getting that out of the way, lets get started:
 
-- Detecting the OS version
-	> volatility -f OtterCTF.vmem imageinfo
+- Detecting the OS:
+	```` shell 
+	volatility -f OtterCTF.vmem imageinfo 
+	````
 
-- Listing all the runing process
-	> volatility -f OtterCTF.vmem --profile=Win7SP1x64 pstree
+- Listing all the running process:
+	````shell 
+	volatility -f OtterCTF.vmem --profile=Win7SP1x64 pstree
+	````
 
 ```	
 Name                                                  Pid   PPid   Thds   Hnds Time
@@ -86,3 +91,28 @@ The first thing that caught our attention is a process called Rick And Morty wit
 This process is the parent of a more suspicious process called vm-tray.ex.
 But wait! Vm-tray.exe or VMware Tray Process belongs to VMware Workstation by VMware. But here we have it runing from Rick and Morty not from VMware. INTERESTING!
 
+- Dumping 'Rick And Morty' and 'Vm-tray.ex'
+
+```shell
+volatility -f OtterCTF.vmem --profile=Win7SP1x64 procdump -p 3820 --dump-dir=.
+```
+```shell
+volatility -f OtterCTF.vmem --profile=Win7SP1x64 procdump -p 3720 --dump-dir=.
+```
+One way we can analyze these executables is by runing them in [Virustotal](https://www.virustotal.com/gui/home).
+
+- Here are the results:
+
+> vm-tray:
+
+![vm-tary](https://i.postimg.cc/3NBtM2ZG/Screenshot-4.png)
+
+> Rick And Morty:
+
+![Rick And Morty](https://i.postimg.cc/wvq4TWbv/Screenshot-3.png)
+
+#### From these results, we can say that our initial thoughts were right. These files are indeed malicious.
+
+After a deeper look into these executables, we found out that vm-tray is actually a ransomware.
+
+I will try to add detailed explanations later.
