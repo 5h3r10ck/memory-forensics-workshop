@@ -5,7 +5,7 @@ To keep it short and sweet, Memory forensics is forensic analysis of a computer'
 In our workshop we used a framework called **Volatility**. It is an open source memory forensics framework for incident response and malware analysis.
 
 You can find the memory dump we work with in this [link](https://mega.nz/#!sh8wmCIL!b4tpech4wzc3QQ6YgQ2uZnOmctRZ2duQxDqxbkWYipQ "link").
-
+#### It contains a real ransomware, so please do not execute it on your host system.
 After getting that out of the way, lets get started:
 
 - Detecting the OS:
