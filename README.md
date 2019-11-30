@@ -8,6 +8,8 @@ You can find the memory dump we work with in this [link](https://mega.nz/#!sh8wm
 #### It contains a real ransomware, so please do not execute it on your host system.
 After getting that out of the way, lets get started:
 
+## FINDING EVIL
+
 - Detecting the OS:
 	```` bash
 	volatility -f OtterCTF.vmem imageinfo 
@@ -115,4 +117,4 @@ One way we can analyze these executables is by runing them in [Virustotal](https
 
 After a deeper look into these executables, we found out that vm-tray is actually a ransomware.
 
-I will try to add detailed explanations later.
+## HOW THE MACHINE GOT INFECTED
