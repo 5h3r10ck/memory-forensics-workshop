@@ -150,11 +150,20 @@ Our victim probably downloaded the torrent file thinking its the season 1 of ric
 ```
 0x000000007d45dcc0     18      1 RW-rw- \Device\HarddiskVolume1\Users\Rick\AppData\Local\Google\Chrome\User Data\Default\History
 ```
+
 Now, lets dump the file and view its content.
+
 ```shell
 volatility -f OtterCTF.vmem --profile=Win7SP1x64 dumpfiles -Q 0x000000007d45dcc0 --dump-dir=lol
 ```
+
 We can use sqlitebrowser to look through the chrome history.
+
 ```shell
 sqlitebrowser file.None.0xfffffa801a5193d0.dat
 ```
+![chrome history](https://i.postimg.cc/m2NQTJf0/Screenshot-2.png)
+
+Now, we can deduce that the malware was recieved from an email in the format of a torrent file.
+
+### THATS ALL FELLAS, HOPE YOU ENJOYED THE WRITEUP
