@@ -118,3 +118,43 @@ One way we can analyze these executables is by runing them in [Virustotal](https
 After a deeper look into these executables, we found out that vm-tray is actually a ransomware.
 
 ## HOW THE MACHINE GOT INFECTED
+
+After finding the ransomware, lets find its path:
+
+```shell
+volatility -f OtterCTF.vmem --profile=Win7SP1x64 cmdline -p 3820
+```
+Here is our output:
+```
+Volatility Foundation Volatility Framework 2.6
+************************************************************************
+Rick And Morty pid:   3820
+Command line : "C:\Torrents\Rick And Morty season 1 download.exe" 
+```
+```bash
+volatility -f OtterCTF.vmem --profile=Win7SP1x64 filescan | grep -i "rick and morty"
+```
+```
+Volatility Foundation Volatility Framework 2.6
+0x000000007d63dbc0     10      0 R--r-d \Device\HarddiskVolume1\Torrents\Rick And Morty season 1 download.exe
+0x000000007d6b3a10     11      1 R--rw- \Device\HarddiskVolume1\Torrents\Rick and Morty - Season 3 (2017) [1080p]\Rick.and.Morty.S03E07.The.Ricklantis.Mixup.1080p.Amazon.WEB-DL.x264-Rapta.mkv
+0x000000007d7adb50     17      1 R--rw- \Device\HarddiskVolume1\Torrents\Rick and Morty - Season 3 (2017) [1080p]\Rick.and.Morty.S03E06.Rest.and.Ricklaxation.1080p.Amazon.WEB-DL.x264-Rapta.mkv
+0x000000007d8813c0      2      0 RW-rwd \Device\HarddiskVolume1\Users\Rick\Downloads\Rick And Morty season 1 download.exe.torrent
+0x000000007da56240      2      0 RW-rwd \Device\HarddiskVolume1\Torrents\Rick And Morty season 1 download.exe
+0x000000007dae9350      2      0 RWD--- \Device\HarddiskVolume1\Users\Rick\AppData\Roaming\BitTorrent\Rick And Morty season 1 download.exe.1.torrent
+0x000000007dcbf6f0      2      0 RW-rwd \Device\HarddiskVolume1\Users\Rick\AppData\Roaming\BitTorrent\Rick And Morty season 1 download.exe.1.torrent
+```
+Looking through the output, we find a torrent file called "Rick And Morty season 1 download.exe.torrent" thats interesting.
+Our victim probably downloaded the torrent file thinking its the season 1 of rick and morty. Lets check Chrome history for more infos. the path of chrome history : ```\Users\Rick\AppData\Local\Google\Chrome\User Data\Default\History```
+
+```
+0x000000007d45dcc0     18      1 RW-rw- \Device\HarddiskVolume1\Users\Rick\AppData\Local\Google\Chrome\User Data\Default\History
+```
+Now, lets dump the file and view its content.
+```shell
+volatility -f OtterCTF.vmem --profile=Win7SP1x64 dumpfiles -Q 0x000000007d45dcc0 --dump-dir=lol
+```
+We can use sqlitebrowser to look through the chrome history.
+```shell
+sqlitebrowser file.None.0xfffffa801a5193d0.dat
+```
