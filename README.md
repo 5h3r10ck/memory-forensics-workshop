@@ -145,7 +145,8 @@ Volatility Foundation Volatility Framework 2.6
 0x000000007dcbf6f0      2      0 RW-rwd \Device\HarddiskVolume1\Users\Rick\AppData\Roaming\BitTorrent\Rick And Morty season 1 download.exe.1.torrent
 ```
 Looking through the output, we find a torrent file called "Rick And Morty season 1 download.exe.torrent" thats interesting.
-Our victim probably downloaded the torrent file thinking its the season 1 of rick and morty. Lets check Chrome history for more infos. the path of chrome history : ```\Users\Rick\AppData\Local\Google\Chrome\User Data\Default\History```
+Our victim probably downloaded the torrent file thinking its the season 1 of rick and morty. 
+Lets check the Chrome history for more infos. here is the path: ```\Users\Rick\AppData\Local\Google\Chrome\User Data\Default\History```
 
 ```
 0x000000007d45dcc0     18      1 RW-rw- \Device\HarddiskVolume1\Users\Rick\AppData\Local\Google\Chrome\User Data\Default\History
